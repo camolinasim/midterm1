@@ -1,0 +1,33 @@
+I: Replace spaces in a string with "%20"
+D:Write a method that identifies spaces and replaces them with "%20"
+E: Duke's 7 steps
+Step 1: Work small instances of the problem by hand
+input: "a b" --> see a, see blank, put %20, see b. 
+step 2: write down what you did: traverse string. If current element = blank, concatenate a %20 there + rest of string.
+step 3: Find patterns: Traversing
+Algorithm: For each blank character inside the chr array, add 2 to the index of all subsequent elements. Then, add %20 to array at i, i+1 and i+2
+Step 4: trace it.
+Input = {'a', '' , 'a'} 
+output: [a][][a] >> [a][][][][a] >> [a][%][2][0][a]
+Step 5: Translate to code
+public static String toUrl(char[] array){
+		for(int i=0; i<array.length; i++){
+			if(array[i]==' '){//add 2 to the index of all subsequent elements}
+				//then add %20 into the 3 remaining blank spaces.
+				//I don't know how to say that in code.
+			}
+
+
+Step 6: Run test cases
+What if the input is all blank spaces?
+input = '                       ' > [][][][][][][][][][]
+the code would always keep adding new blank spaces.
+
+Step 7: add a checker for fully blank inputs. 
+if(input == all blank spaces)
+return false;
+
+
+A: I'm choosing this solution
+L: This solution does not seem to have anything worth implementing in other problems. If anything, it has things I should avoid doing in the future.
+Solution is too slow.
