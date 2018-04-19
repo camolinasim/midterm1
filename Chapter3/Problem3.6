@@ -1,0 +1,69 @@
+problem 3.4
+I: Need to implement a queue but with 2 stacks
+D: Find a way to implement a queue with 2 stacks (Goal is to emulate FIFO function of the queue)
+E: 
+Duke's
+Step 1:
+stack1[1,2,3,4]
+stack2[]
+push everything into stack 2 to reverse the order
+stack1[]
+stack2[4,3,2,1] >> pop 1,2,3,4.
+now you can pop from the second stack as FIFO
+step 2: Write down what you did:
+I populated a stack with characters and created another one empty. Then I put all the elements of the first stack into the second 
+to reverse the order and be able to pop as FIFO. 
+Step 3: Find patterns: Storing data
+Step 4: Check by hand
+Let's say I have an stack s1 with elements {a,b,c,d} and another empty stack s2.
+if we push all elements into stack 2 then we have opposite order
+s1={}
+s2={d,c,b,a}
+Indexes have been flipped so we can pop in FIFO form
+
+Step 5:
+public class MyQueue<T> {
+ Stack<T> stackNewest, stackOldest;
+
+ public MyQueue() {
+ stackNewest new Stack<T>();
+ stackOldest = new Stack<T>();
+}
+public int size() {
+ return stackNewest.size() + stackOldest.size();
+ }
+
+ public void add(T value) {
+ /* Push onto stackNewest, which always has the newest elements on top */
+ stackNewest.push(value);
+ }
+
+ /* Move elements from stackNewest into stackOldest. This is usually done so that
+ * we can do operations on stackOldest. */
+private void shiftStacks() {
+}
+if (stackOldest.isEmpty()) {
+while (!stackNewest.isEmpty()) {
+stackOldest.push(stackNewest.pop());
+}
+}
+public T peek() {
+}
+shiftStacks(); // Ensure stackOldest has the current elements
+return stackOldest.peek(); // retrieve the oldest item.
+public T remove() {
+}
+shiftStacks(); // Ensure stackOldest has the current elements
+return stackOldest.pop(); // pop the oldest item.
+}
+
+Step 6: edge cases
+stack {@,%,A,1,J} code breaks because it can only hold 1 generic type of object
+
+Step 7:
+Is it necessary to create a stack able to store all kinds of data?
+I'll assume the answer to be no given that its about to be 12.
+
+
+L: Look back
+When given a constraint (like not being able to use a queue) try to come up with an analogous way of expressing the same behavior that was constrained.
