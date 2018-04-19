@@ -1,0 +1,48 @@
+problem 1.6 'String Compression'
+I: given a string, count how many characters are repeated and create a new string with the letters used followed by the number of repetitions of such letters. 
+D: Find a way to print the number of times a character is seen before a new character comes in. 
+
+E: Duke's 7
+Step 1: Work some small instances by hand
+aabbbcccc >> a2b3c4
+kkklololo >> k3lololo
+Step 2: Write down what you did: saw a character, remembered it, saw next character. If next character was the same, added 1 to a mental counter. Kept adding 1 to this counter as many times as 'remembered' character was seen.
+Kept doing that until I saw a different character than the one I had in memory. Then I associated the number of times I saw the character, with the character itself. Kept this until the last element in the string.
+step 3: Look for patterns
+Storing data, comparing data.
+step 4: Check by hand
+aabbcc > 
+Memory: a/b/c
+see: a/a/b (different chr)/b/c/c/null
+Counter:1(for a's)/2/1(for b's)/2/1(for c's)/2
+a associates to 2
+b associates to 2
+c associates to 2
+return a2b2c2
+
+Step 5 Translate to code
+
+String compress(String str) {
+ StringBuilder compressed= new StringBuilder();
+ int countConsecutive = 0;
+ for (int i= 0; i < str.length(); i++) {
+ countConsecutive++;
+
+ /* If next character is different than current, append this char to result.*/
+ if (i + 1 >= str.length() I I str.charAt(i) != str.charAt(i + 1)) {
+ compressed.append(str.charAt(i));
+ compressed.append(countConsecutive);
+ countConsecutive = 0;
+ }
+ }
+ return compressed.length() < str.length() ? compressed.toString() : str;
+ }
+
+Step 6: Edge cases
+input = "@@##$$%%^^&&**" > @2#2$2%2^2&2*
+input = true; code broke because its not supposed to get booleans
+Seems fine.
+Step 7. No need to fix boolean unnaceptance. 
+A: Act on a solution: I choose this solution
+Look back: Understanding what happens in your head while you solve the problem 
+is integral to being able to write the code for it.
