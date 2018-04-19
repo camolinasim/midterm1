@@ -1,0 +1,41 @@
+I:Return the kth element of a singly linked list
+
+D:Create an algorithm that retrieves the kth element of a singly linked list
+
+E: Duke's 7 steps
+	Step 1: 
+		Get to the kth element, then return that element.
+	Step 2:
+		Traverse the list until the kth index, and then return that element.
+	Step 3:
+		Traverse the list (looping), keep a counter, retrieve the element when the counter is equal to last index - k.
+	Step 4: 
+		Assume input is {1,1,2,3,5,7} and k = 3, for(int i = 0, i >= k, i++), if(i == (last index - k)) return object in index i else continue
+	Step 5:
+		import java.util.LinkedList;
+
+		public class List {
+
+    			public static void main(String[] args) {
+        			LinkedList<String> list = new LinkedList<String>();
+        			int k = 3;
+        			list.add("1");
+        			list.add("2");
+        			list.add("2");
+        			list.add("it works");
+       		 		list.add("1");
+        			for (int i = 0; i <= (list.lastIndexOf(list.peekLast())- k); i++){
+            			if(i == (list.lastIndexOf(list.peekLast())- k))
+               			 System.out.println(list.get(i));
+				}
+			}
+		}
+A:
+	Step 6:
+		Assume input is {"a","debug", "this", "it broke", "doesn't work", "it works"} with k =5
+		The output is the predicted outcome of "it works"
+	Step 7:
+		Didn't fail test cases.
+
+
+L: This code works properly and it has a big O of n, so it could be useful in other cases.
