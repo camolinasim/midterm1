@@ -1,9 +1,0 @@
-Problem 1 Description
-
-I:
-
-D:
-
-E, A -> 7 steps
-
-L:
