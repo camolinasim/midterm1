@@ -1,0 +1,73 @@
+Problem 1.5 One Away
+I: Need to determine if 2 strings are 1 character away from being the same
+D:Given two strings, write a function to check if they are
+one edit (or zero edits) away
+E: Duke 7's
+Step 1:
+Potato, Potat > true
+Car, Ca > true
+Policeman, Policean > true
+Car, Carr > True
+step 2: Write down what you did
+I checked if there was a difference of only 1 character. Adding one or subtracting one.
+step 3: traversing and comparing
+Check if both strings have a difference of only 1 char. Not only in length, but also in characters used
+If both, the characters and the length are 1 apart, say true.
+
+Step 4: Check by hand
+first= Papatsuyi (length 9)
+second= Papatsuy (length 8) >> first.length +1 == second.length so you can insert a character into sl to make s2.
+
+
+
+Step 5: translate to code
+boolean oneEditAway(String first, String second) {
+ if (first.length()== second.length()) {
+ return oneEditReplace(first, second);
+ } else if (first.length()+ 1 == second.length()) {
+ return oneEditinsert(first, second);
+ } else if (first.length() - 1 == second.length()) {
+ return oneEditinsert(second, first);
+ }
+ return false;
+ }
+
+ boolean oneEditReplace(String sl, String s2) {
+ boolean foundDifference = false;
+ for (int i= 0; i < sl.length(); i++) {
+ if (sl.charAt(i) != s2.charAt(i)) {
+ if (foundDifference) {
+foundDifference = true;
+ }
+ 
+ return true;
+ }
+
+ /* Check if you can insert a character into sl to make s2. */
+ boolean oneEditinsert(String sl, String s2) {
+ int indexl = 0;
+ int index2 = 0;
+ while (index2 < s2.length() && indexl < sl.length()) {
+ if (sl.charAt(indexl) != s2.charAt(index2)) {
+ if (indexl != index2) {
+ return false;
+ }
+ index2++;
+ } else {
+ indexl++;
+ index2++;
+ }
+ }
+ return true;
+ }
+
+Step 6 Edge cases:
+s1 = 3Q9845RYUFHWJOIERUHFGIEH@$#@#%^#@ > true
+s2 = 3Q9845RYUFHWJOIERUHFGIEH@$#@%^#@ > true
+
+
+Step 7: No bugs.
+
+A: I choose this solution
+L: Understanding mathematically what it means for something to be "one element away" 
+and the different cases in which that can happen seems to be applicable to many other problems.
