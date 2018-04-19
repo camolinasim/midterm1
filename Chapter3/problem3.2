@@ -1,0 +1,62 @@
+I:Design a stack with functions push, pop, and min that operate in O(1) time.
+
+D:Create an stack and design the 3 methods to perform in constant time
+E: Duke's 7 steps
+	Step 1: 
+		The push and pop methods are already O(1) since you always keep track of the top, the min method can be done by using a second stack that keeps track 
+		of the minimum value of the main stack.
+		
+	Step 2:
+		Utilize the Java stack since it already has the push and pop methods in O(1), create a second stack that everytime an input gets pushed to the
+		main stack it compares it to the current minimum, if it's lower it gets pushed to the second stack and the main stack, 
+		else it gets ignored by the second stack but pushed to the main stack.
+	Step 3:
+		Compare values of min and pushed value (condition), utilize an extra stack (data structure)
+	Step 4: 
+		Assume input is {5,3,0,1}, the min would be equal to 5 in the first push, then 3 in the second push, then 0 in the third push, and it ignores the 
+		last push
+	Step 5:
+    		import java.util.Stack;
+
+		public class StackWithMin2 extends Stack<Integer> {
+   		 Stack<Integer> s2;
+    
+    		public void stackWithMin2() {
+    		    s2 = new Stack<Integer>();
+   		 }
+
+   		 public void push(int value){
+    		    if (value <= min()) {
+    		    s2.push(value);
+     		   }
+    		    super.push(value);
+    		}
+
+   		 public Integer pop() {
+   		     int value = super.pop();
+   		     if (value == min()) {
+   		         s2.pop();
+  		      }
+    		return value;
+   		}
+
+   		 public int min() {
+   		     if (s2.isEmpty()) {
+   		         return Integer.MAX_VALUE;
+    		    } else {
+     		       return s2.peek();
+      		  }
+   		 }
+		}
+
+A:
+	Step 6:
+		Assume input is {} 
+		The code gives a null pointer exception because it tried to get a value from an empty stack.
+	Step 7:
+		Input {}
+		Some changes had to be made to the code for it to check if the stack is empty.
+		the output is the value of Integer.MAX_VALUE
+
+L: Sometimes it's easier to use an extra data structure to help even if it costs some space in memory, it's especially useful when it introduces
+   new functions to that data structure or to make some methods have better time complexity.
