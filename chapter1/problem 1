@@ -1,0 +1,52 @@
+Chapter 1, problem 1.1
+Implement an algorithm to determine if a string has all unique characters. What if you can't use additional data structures?
+
+I: Check if a string has all unique characters
+D: Create a method that returns true if a string has all unique chr.
+E: Duke 7 steps
+Step 1: Work small instances of the problem by hand
+if input = ab. They are different characters, so return true.
+If input = abbc. Letter b repeats twice, so word must be rejected. That means that if you see a character more than once, you return false.
+Counting characters and associating them to the number of times I have seen them makes me think on a map. I could use Hashmaps for this.
+Step 2: I looked at a every single character, remembering which ones I had seen before. If I were to see one I had seen more than once, I rejected the input.
+Step 3: Find patterns: Storing data (remembering) and counting. (There exists a relation between Strings and Integers)
+Algorithm: Feed input into hashmap, checking every character in the string and increasing an associated int value by 1 every time you see such character.
+Step 4: Trace it. Assume input = abcd. Then, inside the hashmap the values would be a=1, b=1, c=1, d=1. Since each element have been seen exactly once, the string is unique.
+Assume input = abbc. Then, inside the hashmap the values would be a=1, b=2, c=1. Since it is not the case that all element in the map are 1, the string is not unique.
+
+Step 5: Translate to code:
+package hmapsTest;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+
+
+public class hmapDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		String accept = "abcd";
+		String reject = "aabbcc";
+		map.merge(reject, 1, Integer::sum);
+		
+		//map.put("a", 1);
+		//map.put("b", 2);
+		System.out.println(Arrays.asList(map)); // method 1
+		System.out.println(Collections.singletonList(map)); // method 2
+		//if the hashmap contains anything other than 1's, string is not unique.
+	}
+
+}
+
+Step 6: Run test cases:
+Assume input = !@QW#AAAAAAERFE4389"
+There's a bug in the code. Hashmap is not counting the number of times it sees a character correctly. It says that all characters have been seen once.
+
+Step 7: Debug fail test cases
+The merge method must have a problem, or I'm using it wrong. 
+Do I understand the merge method well enough?
+Merge method was utilized incorrectly.
+
+Look Back: Hashmaps seem to be a reliable way to solve the problem.
+
