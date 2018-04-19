@@ -1,0 +1,48 @@
+I:Delete a node in any position of a linked list.
+
+D:Create an algorithm deletes a node in any position of a linked list.
+
+E: Duke's 7 steps
+	Step 1: 
+		list = {1,2,3,4,4,5}, give index 4 the values of index 5.
+		
+	Step 2:
+		If the element is out of bounds/null or the next element is null, then do nothing.
+		Else get to the element, and remove it by replacing it with the next one.
+	Step 3:
+		Traverse the list (looping), keep a counter, retrieve the element when the counter is equal to the desired index.
+	Step 4: 
+		Assume input is {1,1,2,3,4,5,7} and index (k) to remove is 4, for(int i = 0, i >= k, i++), if(i == k) delete object in index i else continue
+	Step 5:
+		import java.util.LinkedList;
+
+		public class List {
+
+    			public static void main(String[] args) {
+        			LinkedList<String> list = new LinkedList<String>();
+        			int k = 3;
+        			list.add("1");
+        			list.add("2");
+        			list.add("2");
+        			list.add("it works");
+       		 		list.add("1");
+        			for (int i = 0; i <= k; i++){
+            				if(i == k){
+               					LinkedlistNode next = n.next;
+         					n.data = next.data;
+         					n.next = next.next;
+         					return true;
+        			{
+				}
+			}
+		}
+A:
+	Step 6:
+		Assume input is {"a","b", "this", "c", "delete this", "d"} with k = 4
+		The output worked as intended.
+	Step 7:
+		Didn't fail test cases.
+
+
+L: This code works properly and it has a big O of n, but there's not many reasons to use it when you can directly use the
+   remove(int index) method or remove(Object o) method from the java linked list.
