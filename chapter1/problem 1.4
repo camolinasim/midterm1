@@ -1,0 +1,70 @@
+Problem 1.4
+I: Recognize whether a string is a palindrome or a permutation of one
+D: Write a method that identifies a palindrome or a permutation of one
+E: Duke's steps
+step 1: work some small instances of the problem
+Ana > Equal, even number of a's, odd number of n's. Palindrome
+Naa > Equal, even number of a's, odd number of n's. Palindrome.
+Step 2: Counted the number of appearances of every chr in the string.
+If it has only one odd character and all others are even, the word is a palindrome
+Step 3: Find patterns. Checking how many times each character appears
+Step 4: Check by Hand
+
+aabaa >> 4 a's, 1 b. One odd character with all other even. Palindrome
+bbaabbe >> 
+Anita Laba La Tina >> 6 a's, 2 n's, 2 i's, 2 t's, 2 L's, 1b. b is odd, but all other appearances are even. Palindrome
+Algorithm:
+Step 5
+boolean isPermutationOfPalindrome(String phrase) {
+ int[] table = buildCharFrequencyTable(phrase);
+ return checkMaxOneOdd(table);
+ }
+
+ /* Check that no more than one character has an odd count. */
+ boolean checkMaxOneOdd(int[] table) {
+ boolean foundOdd = false;
+ for (int count : table) {
+ if (count% 2 == 1) {
+ if (foundOdd) {
+ return false;
+ }
+ foundOdd = true;
+ }
+ }
+ return true;
+ }
+
+ /* Map each character to a number. a -> 0, b -> 1, c -> 2, etc.
+ * This is case insensitive. Non-letter characters map to -1. */
+ int getCharNumber(Character c) {
+ int a= Character.getNumericValue('a');
+ int z = Character.getNumericValue('z');
+ int val= Character.getNumericValue(c);
+ if (a<= val && val<= z) {
+ return val - a;
+ }
+ return -1;
+ }
+
+ /* Count how many times each character appears. */
+ int[] buildCharFrequencyTable(String phrase) {
+ int[] table new int[Character.getNumericValue('z')
+ Character.getNumericValue('a') + 1];
+ for (char c phrase.toCharArray()) {
+ int x = getCharNumber(c);
+if (x != -1) {
+ table[x]++;
+ }
+ }
+ return table;
+ }
+
+Step 6: Run test cases
+Coulnd't think of anything that would break it o.o
+
+Step 7: Can't do because I didn't manage to break the code.
+
+Act on a solution: This solution looks good.
+
+Look back and learn: Hashtables seem to be a reliable way to map characters to numbers.
+
