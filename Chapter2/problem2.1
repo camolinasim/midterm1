@@ -1,1 +1,42 @@
-.
+I: Remove duplicates from a linked list
+D: Create a method that removes duplicates from a linked list
+E: Duke's 7 Steps
+	Step 1:
+		If list = {a,b,c,b,b,d} remove every b except for the first one.
+		
+	Step 2: 
+		Traverse the linked list and put each value in a HashSet, if a value is already in the HashSet, remove that node.
+	Step 3:
+		Traverse the list (looping), store data in HashSet (remembering), compare values (condition).
+	Step 4:
+		Input: {1, 2, 2, 3, 1}
+		Output: {1,2,3}
+	Step 5:
+		import java.util.HashSet;
+		import java.util.LinkedList;
+
+		public class List {
+
+		    public static void main(String[] args) {
+		        LinkedList<String> list = new LinkedList<String>();
+		        list.add("1");
+		        list.add("2");
+		        list.add("2");
+		        list.add("3");
+		        list.add("1");
+		        HashSet<String> set = new HashSet<>(7);
+		        for (int i = 0; i < list.lastIndexOf(list.peekLast())+1; i++) {
+		            set.add(list.get(i));
+		            if(!set.add(list.get(i))) {
+		                list.remove(i);
+		            }
+		        }
+	Step 6:
+		Input: {1, 2, 2, 3, 1}
+		Output: {2,3}
+		There's a bug in the code, the first index of the linked list gets deleted.
+	Step 7:
+		The condition for the index removal is not working properly for the first item in the list.
+		It appears that the condition was correct since the first item gets added properly to the hash set, there must be a problem in my logic.
+A: I select this solution
+L: This solution could be really good, but it's bugged so it is not useful to implement as it is.
