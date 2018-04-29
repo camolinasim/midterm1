@@ -1,0 +1,46 @@
+problem 2.5
+Identify the problem: Need to sum 2 numbers inside of a linked list
+Define Goals: Work on small instance of the problem. Write down how to solve the small instance. Generalize small instance to solve the bigger problem
+E:Duke's
+step 1: 
+Input: (7-> 1 -> 6) + (5 -> 9 -> 2).That is,617 + 295.
+Output: 2 -> 1 -> 9. That is, 912.
+so
+Input: (0-> 0 -> 1) + (0-> 0-> 6). That is 100 + 600
+Output: (0-> 0-> 7)
+How do you work this out?
+step 2: Write down wat you did
+First, we add 7 and 5 to get 12. The digit 2 becomes the last digit of the number, and 1 gets carried over to
+the next step. Second, we add 1, 1, and 9 to get 11. The 1 becomes the second digit, and the other 1 gets
+carried over the final step. Third and finally, we add 1, 6 and 2 to get 9. So, our value becomes 912.
+
+I looked at each element in the linkedlist and remembered it. Then I looked at all elements from the second list and remembered it. Then I added both stored numbers.
+Step 3: Find patterns: Storing memory and accessing it > arrays
+for each element in the list, store such element in an array 
+step 5: Translate to Code
+LinkedListNode addlists(LinkedListNode 11, LinkedListNode 12, int carry) {
+if (11 ==·null && 12 == null && carry== 0) {
+3 return null;
+4 }
+5
+6 LinkedlistNode result new LinkedlistNode();
+7 int value = carry;
+8 if (11 != null) {
+9 value += 11.data;
+10 }
+11 if (12 != null) {
+214 Cracking the Coding Interview, 6th Edition
+12 value += 12.data;
+13 }
+14
+15 result.data value% 10; /* Second digit of number */
+16
+17 /*Recurse */
+18 if (11 != null II 12 != null) {
+19 LinkedlistNode more = addlists(ll == null ? null : 11.next,
+20 12 == null? null : 12 . next,
+21 value>= 10? 1 : 0);
+22 result.setNext(more);
+23 }
+24 return result;
+25 }
